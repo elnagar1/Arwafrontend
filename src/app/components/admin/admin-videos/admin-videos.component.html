@@ -1,0 +1,167 @@
+<div class="admin-container">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+    <h2 style="color: var(--primary-indigo); font-size: 2rem;">إدارة الفيديوهات والدروس</h2>
+    <button class="edu-button" (click)="openForm()">+ إضافة درس جديد</button>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" style="text-align: center; padding: 30px;">
+    <span style="font-size: 2rem; color: var(--primary-blue);">جاري التحميل... ⏳</span>
+  </div>
+
+  <!-- Videos Table -->
+  <div *ngIf="!loading && !showForm" class="modern-card" style="padding: 20px; overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; text-align: right;">
+      <thead>
+        <tr style="border-bottom: 2px solid var(--border-light); color: var(--text-secondary);">
+          <th style="padding: 15px;">الدرس</th>
+          <th style="padding: 15px;">الكورس</th>
+          <th style="padding: 15px;">الحالة</th>
+          <th style="padding: 15px;">المرفقات</th>
+          <th style="padding: 15px; text-align: center;">إجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let video of videos" style="border-bottom: 1px solid var(--border-light); transition: background 0.2s;" onmouseover="this.style.background='rgba(37,99,235,0.02)'" onmouseout="this.style.background='transparent'">
+          <td style="padding: 15px; font-weight: bold; color: var(--text-main);">{{ video.title }}</td>
+          <td style="padding: 15px; color: var(--text-secondary);">{{ video.course?.title || 'عام' }}</td>
+          <td style="padding: 15px;">
+            <span *ngIf="video.is_locked" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem;">🔒 مقفل</span>
+            <span *ngIf="!video.is_locked" style="background: rgba(34, 197, 94, 0.1); color: #22c55e; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem;">✅ متاح</span>
+          </td>
+          <td style="padding: 15px;">
+            <span *ngIf="video.notes_url" title="مذكرة">📄</span>
+            <span *ngIf="video.quiz_url" title="اختبار">✍️</span>
+          </td>
+          <td style="padding: 15px; text-align: center;">
+            <button class="action-btn edit-btn" (click)="editVideo(video)">تعديل ✏️</button>
+            <button class="action-btn delete-btn" (click)="deleteVideo(video.id)">حذف 🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div *ngIf="videos.length === 0" style="text-align: center; padding: 40px; color: var(--text-secondary);">
+      لا توجد فيديوهات مضافة بعد.
+    </div>
+  </div>
+
+  <!-- Add/Edit Form -->
+  <div *ngIf="showForm" class="modern-card" style="padding: 30px; max-width: 800px; margin: 0 auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+      <h3 style="color: var(--primary-blue); font-size: 1.5rem;">
+        {{ isEditing ? 'تعديل الدرس' : 'إضافة درس جديد' }}
+      </h3>
+      <button class="edu-button-outline" (click)="closeForm()" style="padding: 5px 15px;">إلغاء ✕</button>
+    </div>
+
+    <form (ngSubmit)="saveVideo()" #videoForm="ngForm">
+      
+      <div class="form-group">
+        <label>عنوان الدرس *</label>
+        <input type="text" name="title" [(ngModel)]="currentVideo.title" required class="form-control" placeholder="مثال: الدرس الأول: مقدمة...">
+      </div>
+
+      <div class="form-group">
+        <label>الكورس *</label>
+        <select name="course_id" [(ngModel)]="currentVideo.course_id" required class="form-control">
+          <option *ngFor="let c of courses" [value]="c.id">{{ c.title }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>رابط يوتيوب *</label>
+        <input type="url" name="youtube_url" [(ngModel)]="currentVideo.youtube_url" required class="form-control" placeholder="https://www.youtube.com/watch?v=...">
+      </div>
+      
+      <div class="form-group">
+        <label>الوصف</label>
+        <textarea name="description" [(ngModel)]="currentVideo.description" class="form-control" rows="3" placeholder="وصف محتوى الدرس..."></textarea>
+      </div>
+
+      <div style="display: flex; gap: 20px;">
+        <div class="form-group" style="flex: 1;">
+          <label>رابط المذكرة (PDF)</label>
+          <input type="url" name="notes_url" [(ngModel)]="currentVideo.notes_url" class="form-control" placeholder="رابط Google Drive للمذكرة">
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label>رابط الاختبار (Form)</label>
+          <input type="url" name="quiz_url" [(ngModel)]="currentVideo.quiz_url" class="form-control" placeholder="رابط Google Form">
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 20px;">
+        <div class="form-group" style="flex: 1;">
+          <label>متاح من تاريخ (اختياري)</label>
+          <input type="datetime-local" name="available_from" [(ngModel)]="currentVideo.available_from" class="form-control">
+        </div>
+        <div class="form-group" style="flex: 1;">
+          <label>متاح حتى تاريخ (اختياري)</label>
+          <input type="datetime-local" name="available_until" [(ngModel)]="currentVideo.available_until" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group" style="background: rgba(239, 68, 68, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(239, 68, 68, 0.2); display: flex; align-items: center; gap: 10px;">
+        <input type="checkbox" id="is_locked" name="is_locked" [(ngModel)]="currentVideo.is_locked" style="width: 20px; height: 20px;">
+        <label for="is_locked" style="margin: 0; color: #ef4444; font-weight: bold; cursor: pointer;">
+          قفل الدرس (إخفاء الفيديو عن الطلاب تماماً) 🔒
+        </label>
+      </div>
+
+      <div style="margin-top: 30px; text-align: left;">
+        <button type="submit" class="edu-button" [disabled]="!videoForm.form.valid || saving" style="padding: 10px 30px;">
+          {{ saving ? 'جاري الحفظ...' : 'حفظ التعديلات ✔️' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<style>
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-main);
+  }
+  .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: white;
+    transition: border-color 0.3s;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+  .action-btn {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0 3px;
+    transition: opacity 0.2s;
+  }
+  .action-btn:hover {
+    opacity: 0.8;
+  }
+  .edit-btn {
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-blue);
+  }
+  .delete-btn {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+  }
+</style>

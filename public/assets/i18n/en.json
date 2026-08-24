@@ -1,0 +1,80 @@
+{
+  "NAVBAR": {
+    "HOME": "Home",
+    "CURRICULUM": "Curriculum",
+    "TEXTBOOK": "Textbook",
+    "GLOSSARY": "Glossary",
+    "TOOLS": "Student Tools",
+    "BOOK_SESSION": "Book a Session",
+    "LANG_TOGGLE": "عربي"
+  },
+  "LANDING": {
+    "SYLLABUS": "DECI Baccalaureate Syllabus 2026",
+    "HERO_TITLE": "Master Computer Science",
+    "HERO_SUBTITLE": "An interactive, student-first learning platform designed to make programming, algorithms, and system design intuitive and fun for Baccalaureate students.",
+    "START_LEARNING": "Start Learning Now",
+    "SCHEDULE_TUTORING": "Schedule Tutoring",
+    "EXPLORE_CURRICULUM": "Explore Curriculum",
+    "JOIN_STUDENTS": "Join 1,000+ students mastering CS",
+    "PROVEN_RESULTS": "Proven Results",
+    "IN_EXAMS": "in Baccalaureate Exams",
+    "WHY_LEARN": "Why Learn with Us?",
+    "WHY_DESC": "A curriculum engineered not just to pass exams, but to turn you into a genuine software architect.",
+    "FEATURE_1_TITLE": "Algorithmic Thinking",
+    "FEATURE_1_DESC": "Develop the mental models required to break down complex problems into efficient, solvable steps.",
+    "FEATURE_2_TITLE": "Hands-on Coding",
+    "FEATURE_2_DESC": "Move beyond theory. Write actual code, build projects, and see your logic come to life instantly.",
+    "FEATURE_3_TITLE": "Baccalaureate Focused",
+    "FEATURE_3_DESC": "Content precisely tailored to the DECI Baccalaureate syllabus, ensuring you are 100% prepared.",
+    "GO_TO_TOOLS": "Try Interactive Tools",
+    "BOOK_NOW": "Book a Live Session",
+    "INSTRUCTOR_TITLE": "Who is Arwa Ashraf?",
+    "INSTRUCTOR_NAME": "Arwa Ashraf",
+    "INSTRUCTOR_ROLE": "Lecturer at Digital Egypt Cubs, Digital Egypt Buds, and Information Technology Pioneers",
+    "INSTRUCTOR_DESC": "An expert in teaching computer science and programming to youth, dedicated to building a new generation of digital innovators under the Presidential Initiatives of the Ministry of Communications and Information Technology."
+  },
+  "TEXTBOOK": {
+    "TITLE": "Official Textbook",
+    "SUBTITLE": "Browse the \"Programming and AI - Second Year Baccalaureate\" book in its original interactive version.",
+    "PART_1": "Part One (Term 1)",
+    "PART_2": "Part Two (Term 2)",
+    "DOWNLOAD": "Download Book",
+    "NOT_SUPPORTED": "Your browser does not support inline PDF viewing.",
+    "CLICK_HERE": "Click here to view the book"
+  },
+  "GLOSSARY": {
+    "TITLE": "Glossary of Terms 📚",
+    "SUBTITLE": "Your comprehensive reference for all technical and programming terms mentioned in the Ministry of Education book, divided by lessons to facilitate review and understanding.",
+    "SEARCH_PLACEHOLDER": "Search for a term, like 'AI' or 'Moore\\'s Law'...",
+    "NO_RESULTS": "Sorry, we couldn't find any terms matching your search.",
+    "LESSON": "Lesson:"
+  },
+  "TOOLS": {
+    "TITLE": "Student Tools & Simulators 🛠️",
+    "SUBTITLE": "Interactive applications specifically designed to help you understand and apply Baccalaureate curriculum concepts practically.",
+    "TAB_CONVERTER": "Number Systems Converter",
+    "TAB_GATES": "Logic Gates Simulator",
+    "TAB_COMPILER": "Code Compiler (IDE)",
+    "CONV_TITLE": "Number Systems Converter (Decimal & Binary & Hexadecimal)",
+    "CONV_LABEL": "Enter Number:",
+    "CONV_BINARY": "Binary",
+    "CONV_DECIMAL": "Decimal",
+    "CONV_HEXADECIMAL": "Hexadecimal",
+    "CONV_BIT_BOARD": "Interactive 8-Bit Board",
+    "COMPILER_TITLE": "Code Editor & Compiler (Web IDE)",
+    "COMPILER_DESC": "Write and test your HTML/JS/CSS code as you learned in the curriculum:",
+    "GATES_TITLE": "Logic Gates Simulator",
+    "GATES_DESC": "Toggle the inputs (A, B) to adjust the values and watch the logic gate calculate the output in real time.",
+    "GATES_EXPLAIN_AND": "Outputs 1 only if both inputs are 1.",
+    "GATES_EXPLAIN_OR": "Outputs 1 if at least one input is 1.",
+    "GATES_EXPLAIN_NOT": "Inverts the input value (0 becomes 1, 1 becomes 0). (Note: single input gate, Switch B is disabled)",
+    "GATES_EXPLAIN_XOR": "Outputs 1 if the inputs are different.",
+    "GATES_EXPLAIN_NAND": "Inverted AND; outputs 0 only if both inputs are 1.",
+    "GATES_EXPLAIN_NOR": "Inverted OR; outputs 1 only if both inputs are 0."
+  },
+  "BOOKING": {
+    "TITLE": "Book a Session 📅",
+    "SUBTITLE": "Contact us directly via WhatsApp to coordinate the appropriate slot and discuss details.",
+    "CHAT_NOW": "Chat on WhatsApp"
+  }
+}

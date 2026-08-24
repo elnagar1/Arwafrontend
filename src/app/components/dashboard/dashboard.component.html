@@ -1,0 +1,45 @@
+<div style="display: flex; gap: 30px; margin-top: 20px;">
+  <!-- Sidebar -->
+  <aside class="glass-card" style="width: 250px; display: flex; flex-direction: column; gap: 15px;">
+    <h3 style="color: var(--error); font-family: var(--font-mono); margin-bottom: 20px;">[Admin_Panel]</h3>
+    <a href="#" style="color: var(--text-main); padding: 10px; background: rgba(255,255,255,0.05); border-radius: 4px; border-left: 3px solid var(--error);">Dashboard Overview</a>
+    <a href="#" style="color: var(--text-secondary); padding: 10px;">Manage Courses</a>
+    <a href="#" style="color: var(--text-secondary); padding: 10px;">Manage Videos</a>
+    <a href="#" style="color: var(--text-secondary); padding: 10px;">View Bookings <span style="background: var(--accent-purple); color: #000; padding: 2px 6px; border-radius: 10px; font-size: 0.7rem; margin-left: 10px;">3</span></a>
+  </aside>
+
+  <!-- Main Content -->
+  <div style="flex: 1;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+      <h2 style="color: var(--text-main);">Welcome, Admin</h2>
+      <button class="cyber-button" style="border-color: var(--error); color: var(--error);">Logout</button>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px;">
+      <div class="glass-card" style="padding: 20px; text-align: center;">
+        <h4 style="color: var(--text-secondary);">Total Students</h4>
+        <div style="font-size: 2.5rem; color: var(--accent-cyan); font-family: var(--font-mono);">1,024</div>
+      </div>
+      <div class="glass-card" style="padding: 20px; text-align: center;">
+        <h4 style="color: var(--text-secondary);">Active Courses</h4>
+        <div style="font-size: 2.5rem; color: var(--accent-purple); font-family: var(--font-mono);">12</div>
+      </div>
+      <div class="glass-card" style="padding: 20px; text-align: center;">
+        <h4 style="color: var(--text-secondary);">Pending Bookings</h4>
+        <div style="font-size: 2.5rem; color: var(--error); font-family: var(--font-mono);">3</div>
+      </div>
+    </div>
+    
+    <div class="glass-card">
+      <h3 style="color: var(--text-main); margin-bottom: 20px;">Recent Activity</h3>
+      <div style="padding: 15px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between;">
+        <span style="color: var(--text-secondary);">Ahmed booked a session for 24 Aug</span>
+        <span style="color: var(--accent-cyan); font-family: var(--font-mono);">Pending</span>
+      </div>
+      <div style="padding: 15px; border-bottom: 1px solid var(--glass-border); display: flex; justify-content: space-between;">
+        <span style="color: var(--text-secondary);">New video added to "Intro to Algorithms"</span>
+        <span style="color: var(--accent-cyan); font-family: var(--font-mono);">Done</span>
+      </div>
+    </div>
+  </div>
+</div>

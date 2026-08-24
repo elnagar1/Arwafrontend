@@ -1,0 +1,29 @@
+<div style="max-width: 800px; margin: 0 auto; padding-bottom: 50px;">
+  
+  <div style="margin-bottom: 30px;">
+    <button class="edu-button-outline" style="padding: 0.4rem 1rem; font-size: 0.9rem;" routerLink="/courses">
+      &larr; Back to Curriculum
+    </button>
+  </div>
+
+  <div *ngIf="lessonData" class="modern-card" style="padding: 40px;">
+    
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; border-bottom: 1px solid var(--border-light); padding-bottom: 20px;">
+      <h1 style="color: var(--primary-indigo); font-size: 2rem; margin: 0;">{{ lessonData.title }}</h1>
+      <span style="background: rgba(37,99,235,0.1); color: var(--primary-blue); padding: 5px 15px; border-radius: 20px; font-weight: bold; font-family: var(--font-mono); font-size: 0.85rem;">
+        READING
+      </span>
+    </div>
+
+    <!-- Lesson Content rendering -->
+    <div [innerHTML]="lessonData.content" style="color: var(--text-main); font-size: 1.1rem; line-height: 1.8;">
+    </div>
+
+    <div style="margin-top: 50px; display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid var(--border-light);">
+      <p style="margin: 0; color: var(--text-secondary); font-weight: 500;">Finished reading this lesson?</p>
+      <button class="edu-button" style="padding: 0.5rem 1.5rem; font-size: 0.95rem;">Mark as Complete</button>
+    </div>
+
+  </div>
+
+</div>

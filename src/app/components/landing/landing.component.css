@@ -1,0 +1,133 @@
+/* Hero Section Base */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin-bottom: 100px;
+  padding-top: 40px;
+  flex-wrap: wrap;
+}
+.hero-text-content {
+  flex: 1;
+  min-width: 400px;
+  max-width: 600px;
+}
+.hero-image-content {
+  flex: 1;
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.hero-title {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 25px;
+  letter-spacing: -2px;
+  color: var(--text-main);
+}
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+.students-joined {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Features Base */
+.features-container {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  margin-bottom: 120px;
+}
+.feature-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.feature-row.reverse-mobile {
+  flex-wrap: wrap-reverse;
+}
+.feature-image {
+  flex: 1.2;
+  min-width: 350px;
+  position: relative;
+}
+.feature-text {
+  flex: 1;
+  min-width: 350px;
+}
+
+/* Responsive Mobile Rules */
+@media (max-width: 768px) {
+  /* Hero */
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  .hero-text-content {
+    min-width: 100%;
+    max-width: 100%;
+  }
+  .hero-image-content {
+    min-width: 100%;
+  }
+  .hero-title {
+    font-size: 2.8rem;
+    letter-spacing: -1px;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-buttons > * {
+    width: 100%;
+  }
+  .students-joined {
+    flex-direction: column;
+    margin-top: 30px;
+  }
+
+  /* Features */
+  .features-container {
+    gap: 70px;
+    margin-bottom: 70px;
+  }
+  .feature-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+  .feature-row.reverse-mobile {
+    flex-direction: column-reverse;
+  }
+  .feature-image, .feature-text {
+    min-width: 100%;
+    width: 100%;
+  }
+  
+  /* Utilities */
+  .animate-float {
+    display: none; /* Hide floating abstract icons on mobile for cleaner look */
+  }
+}

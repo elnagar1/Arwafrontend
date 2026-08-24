@@ -1,0 +1,162 @@
+<!-- Hero Section -->
+<div data-aos="fade-up" class="hero-section">
+  
+  <div class="hero-text-content">
+    <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px; background: rgba(37, 99, 235, 0.1); border-radius: 50px; margin-bottom: 30px;">
+      <span style="background: var(--primary-blue); color: white; padding: 2px 8px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">NEW</span>
+      <span style="color: var(--primary-indigo); font-weight: 500; font-size: 0.95rem;">{{ 'LANDING.SYLLABUS' | translate }}</span>
+    </div>
+    
+    <h1 class="hero-title">
+      {{ 'LANDING.HERO_TITLE' | translate }}
+    </h1>
+    
+    <p class="hero-subtitle">
+      {{ 'LANDING.HERO_SUBTITLE' | translate }}
+    </p>
+    
+    <div class="hero-buttons">
+      <button class="edu-button" routerLink="/courses">{{ 'LANDING.START_LEARNING' | translate }}</button>
+      <a [href]="'https://wa.me/2' + settings['whatsapp_number']" target="_blank" class="edu-button-outline" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">{{ 'LANDING.SCHEDULE_TUTORING' | translate }}</a>
+    </div>
+    
+    <div class="students-joined">
+      <div style="display: flex; flex-direction: row-reverse;">
+        <img src="https://ui-avatars.com/api/?name=Student+1&background=random" style="width: 40px; height: 40px; border-radius: 50%; border: 3px solid white; margin-left: -15px;">
+        <img src="https://ui-avatars.com/api/?name=Student+2&background=random" style="width: 40px; height: 40px; border-radius: 50%; border: 3px solid white; margin-left: -15px;">
+        <img src="https://ui-avatars.com/api/?name=Student+3&background=random" style="width: 40px; height: 40px; border-radius: 50%; border: 3px solid white; margin-left: -15px;">
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;" [innerHTML]="'LANDING.JOIN_STUDENTS' | translate"></p>
+    </div>
+  </div>
+
+  <div class="hero-image-content">
+    <!-- Abstract tech background blob -->
+    <div class="animate-blob-spin" style="position: absolute; top: 50%; left: 50%; width: 450px; height: 450px; background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(249,115,22,0.2)); filter: blur(60px); border-radius: 50%; z-index: -1;"></div>
+    
+    <!-- Floating Tech Icons -->
+    <div class="animate-float" style="position: absolute; top: 10%; right: -20px; z-index: 2; animation-delay: 1s; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 12px; color: var(--primary-blue); font-weight: bold; font-family: var(--font-mono); box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+      &lt;/&gt;
+    </div>
+    
+    <div class="animate-float" style="position: absolute; bottom: 20%; right: -40px; z-index: 2; animation-delay: 2.5s; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 12px; color: var(--accent-orange); font-weight: bold; font-family: var(--font-mono); box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+      {{ '{' }} {{ '}' }}
+    </div>
+    
+    <div class="animate-float" style="position: absolute; top: 30%; left: -20px; z-index: 2; animation-delay: 0.5s; background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); padding: 10px 15px; border-radius: 12px; color: var(--primary-indigo); font-weight: bold; font-family: var(--font-mono); box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+      01
+    </div>
+    
+    <!-- Hero Generated Image -->
+    <div class="animate-float" style="width: 100%; max-width: 550px; z-index: 1;">
+      <img src="/assets/cs_student_hero_1787492276910.jpg" alt="Student learning computer science" style="width: 100%; border-radius: 30px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); transform: rotate(2deg); transition: transform 0.5s ease;" onmouseover="this.style.transform='rotate(0deg) scale(1.02)'" onmouseout="this.style.transform='rotate(2deg) scale(1)'">
+    </div>
+    
+    <!-- Floating Badge -->
+    <div class="modern-card" style="position: absolute; bottom: 30px; left: -30px; z-index: 2; padding: 15px 25px; border-radius: 20px; display: flex; align-items: center; gap: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.1);">
+      <div style="background: var(--accent-orange); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: var(--font-mono);">A+</div>
+      <div>
+        <div style="font-weight: bold; color: var(--text-main);">{{ 'LANDING.PROVEN_RESULTS' | translate }}</div>
+        <div style="font-size: 0.8rem; color: var(--text-secondary);">{{ 'LANDING.IN_EXAMS' | translate }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Intro Header -->
+<div data-aos="fade-up" style="text-align: center; margin-bottom: 80px;">
+  <h2 style="font-size: 2.8rem; letter-spacing: -1px; color: var(--text-main);">{{ 'LANDING.WHY_LEARN' | translate }}</h2>
+  <p style="color: var(--text-secondary); max-width: 600px; margin: 15px auto 40px; font-size: 1.1rem;">{{ 'LANDING.WHY_DESC' | translate }}</p>
+</div>
+
+<!-- Visual Feature Split Sections (Alternating Rows with Large Images) -->
+<div class="features-container">
+
+  <!-- Feature 1: Curriculum Preview -->
+  <div data-aos="fade-up" class="feature-row">
+    <!-- Image Left -->
+    <div class="feature-image">
+      <div style="position: absolute; top: 10%; left: 10%; width: 80%; height: 80%; background: var(--primary-indigo); filter: blur(50px); opacity: 0.15; z-index: -1;"></div>
+      <img src="/assets/curriculum_preview.jpg" alt="Curriculum preview" 
+           style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid var(--border-light); transition: transform 0.4s ease, box-shadow 0.4s ease;"
+           onmouseover="this.style.transform='scale(1.03) translateY(-5px)'; this.style.boxShadow='0 30px 60px rgba(0,0,0,0.2)'"
+           onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'">
+    </div>
+    <!-- Text Right -->
+    <div class="feature-text">
+      <div style="display: inline-flex; width: 50px; height: 50px; background: rgba(37,99,235,0.1); border-radius: 12px; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary-blue); font-size: 1.5rem;">
+        📚
+      </div>
+      <h3 style="font-size: 2.2rem; margin-bottom: 15px; color: var(--text-main); font-weight: 800;">{{ 'LANDING.FEATURE_3_TITLE' | translate }}</h3>
+      <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px;">{{ 'LANDING.FEATURE_3_DESC' | translate }}</p>
+      <button class="edu-button-outline" routerLink="/courses" style="padding: 0.8rem 2rem;">{{ 'LANDING.EXPLORE_CURRICULUM' | translate }}</button>
+    </div>
+  </div>
+
+  <!-- Feature 2: Compiler & Interactive Tools -->
+  <div data-aos="fade-up" class="feature-row reverse-mobile">
+    <!-- Text Left -->
+    <div class="feature-text">
+      <div style="display: inline-flex; width: 50px; height: 50px; background: rgba(249,115,22,0.1); border-radius: 12px; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--accent-orange); font-size: 1.5rem;">
+        💻
+      </div>
+      <h3 style="font-size: 2.2rem; margin-bottom: 15px; color: var(--text-main); font-weight: 800;">{{ 'LANDING.FEATURE_2_TITLE' | translate }}</h3>
+      <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px;">{{ 'LANDING.FEATURE_2_DESC' | translate }}</p>
+      <button class="edu-button-outline" routerLink="/tools" style="padding: 0.8rem 2rem;">{{ 'LANDING.GO_TO_TOOLS' | translate }}</button>
+    </div>
+    <!-- Image Right -->
+    <div class="feature-image">
+      <div style="position: absolute; top: 10%; right: 10%; width: 80%; height: 80%; background: var(--accent-orange); filter: blur(50px); opacity: 0.15; z-index: -1;"></div>
+      <img src="/assets/tools_preview.jpg" alt="Interactive tools preview" 
+           style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid var(--border-light); transition: transform 0.4s ease, box-shadow 0.4s ease;"
+           onmouseover="this.style.transform='scale(1.03) translateY(-5px)'; this.style.boxShadow='0 30px 60px rgba(0,0,0,0.2)'"
+           onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'">
+    </div>
+  </div>
+
+  <!-- Feature 3: Sessions Booking -->
+  <div data-aos="fade-up" class="feature-row">
+    <!-- Image Left -->
+    <div class="feature-image">
+      <div style="position: absolute; top: 10%; left: 10%; width: 80%; height: 80%; background: var(--primary-blue); filter: blur(50px); opacity: 0.15; z-index: -1;"></div>
+      <img src="/assets/sessions_preview.jpg" alt="Live sessions preview" 
+           style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); border: 1px solid var(--border-light); transition: transform 0.4s ease, box-shadow 0.4s ease;"
+           onmouseover="this.style.transform='scale(1.03) translateY(-5px)'; this.style.boxShadow='0 30px 60px rgba(0,0,0,0.2)'"
+           onmouseout="this.style.transform='scale(1) translateY(0)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.12)'">
+    </div>
+    <!-- Text Right -->
+    <div class="feature-text">
+      <div style="display: inline-flex; width: 50px; height: 50px; background: rgba(79,70,229,0.1); border-radius: 12px; align-items: center; justify-content: center; margin-bottom: 20px; color: var(--primary-indigo); font-size: 1.5rem;">
+        🤝
+      </div>
+      <h3 style="font-size: 2.2rem; margin-bottom: 15px; color: var(--text-main); font-weight: 800;">{{ 'LANDING.FEATURE_1_TITLE' | translate }}</h3>
+      <p style="color: var(--text-secondary); line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px;">{{ 'LANDING.FEATURE_1_DESC' | translate }}</p>
+      <a [href]="'https://wa.me/2' + settings['whatsapp_number']" target="_blank" class="edu-button animate-pulse-glow" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 2rem;">{{ 'LANDING.BOOK_NOW' | translate }}</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Instructor Bio Section -->
+<div id="about-instructor" data-aos="zoom-in" class="modern-card" style="margin-top: 50px; padding: 40px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden;">
+  <div class="animate-blob-spin" style="position: absolute; top: 0px; right: 0px; width: 150px; height: 150px; background: var(--primary-indigo); filter: blur(50px); opacity: 0.2; z-index: 0;"></div>
+  <div class="animate-blob-spin" style="position: absolute; bottom: 0px; left: 0px; width: 150px; height: 150px; background: var(--accent-orange); filter: blur(50px); opacity: 0.2; z-index: 0; animation-delay: -7.5s;"></div>
+  
+  <div style="z-index: 1; display: flex; flex-direction: column; align-items: center;">
+    <h2 style="font-size: 2.2rem; color: var(--text-main); margin-bottom: 20px;">{{ 'LANDING.INSTRUCTOR_TITLE' | translate }}</h2>
+    
+    <div class="animate-pulse-glow" style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.1); margin-bottom: 20px;">
+      <img [src]="settings['instructor_image_url']" [alt]="localizedName" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    
+    <h3 style="font-size: 1.8rem; color: var(--primary-blue); margin-bottom: 10px;">{{ localizedName }}</h3>
+    
+    <div style="display: inline-flex; align-items: center; gap: 10px; padding: 12px 25px; background: rgba(37,99,235,0.1); border-radius: 50px; margin-bottom: 20px; box-shadow: inset 0 2px 4px rgba(255,255,255,0.5);">
+      <span style="color: var(--primary-indigo); font-weight: bold; font-size: 1.1rem; text-wrap: balance;">{{ localizedRole }}</span>
+    </div>
+    
+    <p style="color: var(--text-secondary); max-width: 800px; line-height: 1.8; font-size: 1.2rem; text-wrap: balance;">
+      {{ localizedBio }}
+    </p>
+  </div>
+</div>

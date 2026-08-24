@@ -1,0 +1,105 @@
+<div class="admin-container">
+  <div style="margin-bottom: 30px;">
+    <h2 style="color: var(--primary-indigo); font-size: 2rem;">الإعدادات العامة ⚙️</h2>
+    <p style="color: var(--text-secondary);">تعديل بيانات الموقع الأساسية كالأرقام والصور والأسماء باللغتين.</p>
+  </div>
+
+  <div *ngIf="loading" style="text-align: center; padding: 30px;">
+    <span style="font-size: 2rem; color: var(--primary-blue);">جاري التحميل... ⏳</span>
+  </div>
+
+  <div *ngIf="!loading" class="modern-card" style="padding: 30px; max-width: 800px;">
+    <form (ngSubmit)="saveSettings()" #settingsForm="ngForm">
+      
+      <div class="form-section-title">بيانات التواصل</div>
+      <div class="form-group">
+        <label>رقم الواتساب (للحجز والتواصل)</label>
+        <input type="text" name="whatsapp_number" [(ngModel)]="settings['whatsapp_number']" class="form-control" placeholder="010...">
+      </div>
+
+      <div class="form-section-title">بيانات المعلمة (عربي)</div>
+      <div class="form-group">
+        <label>اسم المعلمة</label>
+        <input type="text" name="instructor_name_ar" [(ngModel)]="settings['instructor_name_ar']" class="form-control" dir="rtl">
+      </div>
+      
+      <div class="form-group">
+        <label>المسمى الوظيفي</label>
+        <input type="text" name="instructor_role_ar" [(ngModel)]="settings['instructor_role_ar']" class="form-control" dir="rtl">
+      </div>
+
+      <div class="form-group">
+        <label>النبذة التعريفية (Bio)</label>
+        <textarea name="instructor_bio_ar" [(ngModel)]="settings['instructor_bio_ar']" class="form-control" rows="4" dir="rtl"></textarea>
+      </div>
+
+      <div class="form-section-title">بيانات المعلمة (English)</div>
+      <div class="form-group">
+        <label>Instructor Name</label>
+        <input type="text" name="instructor_name_en" [(ngModel)]="settings['instructor_name_en']" class="form-control" dir="ltr">
+      </div>
+      
+      <div class="form-group">
+        <label>Instructor Role</label>
+        <input type="text" name="instructor_role_en" [(ngModel)]="settings['instructor_role_en']" class="form-control" dir="ltr">
+      </div>
+
+      <div class="form-group">
+        <label>Instructor Bio</label>
+        <textarea name="instructor_bio_en" [(ngModel)]="settings['instructor_bio_en']" class="form-control" rows="4" dir="ltr"></textarea>
+      </div>
+
+      <div class="form-section-title">صورة المعلمة</div>
+      <div class="form-group">
+        <label>رابط الصورة الشخصية</label>
+        <input type="url" name="instructor_image_url" [(ngModel)]="settings['instructor_image_url']" class="form-control" placeholder="https://..." dir="ltr">
+        <div style="margin-top: 10px;" *ngIf="settings['instructor_image_url']">
+          <img [src]="settings['instructor_image_url']" alt="Preview" style="max-width: 150px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+        </div>
+      </div>
+
+      <div style="margin-top: 30px; text-align: left;">
+        <button type="submit" class="edu-button" [disabled]="saving" style="padding: 12px 35px; font-size: 1.1rem;">
+          {{ saving ? 'جاري الحفظ...' : 'حفظ الإعدادات ✔️' }}
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<style>
+  .form-section-title {
+    font-size: 1.2rem;
+    color: var(--primary-blue);
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.2);
+    padding-bottom: 5px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-main);
+  }
+  .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: white;
+    transition: border-color 0.3s;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+  }
+</style>

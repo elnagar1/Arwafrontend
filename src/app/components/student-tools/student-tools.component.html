@@ -1,0 +1,277 @@
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; min-height: 80vh;" dir="auto">
+  
+  <div style="text-align: center; margin-bottom: 50px;">
+    <h1 style="color: var(--primary-indigo); font-size: 2.5rem; margin-bottom: 10px;">{{ 'TOOLS.TITLE' | translate }}</h1>
+    <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+      {{ 'TOOLS.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px;">
+    <button (click)="setActiveTab('converter')" 
+            [ngClass]="{'active-tab': activeTab === 'converter'}" 
+            class="tab-button">
+      🔢 {{ 'TOOLS.TAB_CONVERTER' | translate }}
+    </button>
+    <button (click)="setActiveTab('gates')" 
+            [ngClass]="{'active-tab': activeTab === 'gates'}" 
+            class="tab-button">
+      🔌 {{ 'TOOLS.TAB_GATES' | translate }}
+    </button>
+    <button (click)="setActiveTab('compiler')" 
+            [ngClass]="{'active-tab': activeTab === 'compiler'}" 
+            class="tab-button">
+      💻 {{ 'TOOLS.TAB_COMPILER' | translate }}
+    </button>
+  </div>
+
+  <!-- Tab Content: Number Systems Converter -->
+  <div *ngIf="activeTab === 'converter'" class="modern-card" style="padding: 40px; max-width: 900px; margin: 0 auto;" dir="auto">
+    <h2 style="color: var(--primary-blue); margin-bottom: 10px; text-align: center;">{{ 'TOOLS.CONV_TITLE' | translate }}</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 40px; text-align: center;">جرب إدخال الأرقام أو اضغط مباشرة على البتات لتشغيلها وإيقافها ومشاهدة التحويل الرياضي.</p>
+    
+    <!-- Three column inputs grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 40px;">
+      
+      <!-- Decimal Input -->
+      <div style="text-align: right;">
+        <label style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-main);">{{ 'TOOLS.CONV_DECIMAL' | translate }} (Base 10)</label>
+        <input type="number" [(ngModel)]="decimalValue" (ngModelChange)="onDecimalChange()" min="0" max="255" placeholder="0" 
+               style="width: 100%; padding: 12px 15px; font-size: 1.2rem; border: 2px solid var(--border-light); border-radius: 12px; outline: none; font-family: monospace; background: rgba(255,255,255,0.05); color: var(--text-main);">
+      </div>
+
+      <!-- Binary Input -->
+      <div style="text-align: right;">
+        <label style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-main);">{{ 'TOOLS.CONV_BINARY' | translate }} (Base 2)</label>
+        <input type="text" [(ngModel)]="binaryValue" (ngModelChange)="onBinaryChange()" maxlength="8" placeholder="00000000" 
+               style="width: 100%; padding: 12px 15px; font-size: 1.2rem; border: 2px solid var(--border-light); border-radius: 12px; outline: none; font-family: monospace; background: rgba(255,255,255,0.05); color: var(--text-main);">
+      </div>
+
+      <!-- Hexadecimal Input -->
+      <div style="text-align: right;">
+        <label style="display: block; margin-bottom: 8px; font-weight: bold; color: var(--text-main);">{{ 'TOOLS.CONV_HEXADECIMAL' | translate }} (Base 16)</label>
+        <input type="text" [(ngModel)]="hexValue" (ngModelChange)="onHexChange()" maxlength="2" placeholder="00" 
+               style="width: 100%; padding: 12px 15px; font-size: 1.2rem; border: 2px solid var(--border-light); border-radius: 12px; outline: none; font-family: monospace; background: rgba(255,255,255,0.05); color: var(--text-main);">
+      </div>
+
+    </div>
+
+    <!-- Interactive 8-Bit Board -->
+    <div style="border-top: 1px solid var(--border-light); padding-top: 30px; margin-bottom: 30px;">
+      <h3 style="color: var(--text-main); margin-bottom: 20px; font-size: 1.25rem; text-align: center;">{{ 'TOOLS.CONV_BIT_BOARD' | translate }}</h3>
+      
+      <div class="bit-board" dir="ltr">
+        <div *ngFor="let bit of bits; let i = index" class="bit-column">
+          <span class="bit-weight">{{ bitWeights[i] }}</span>
+          <div (click)="toggleBit(i)" class="bit-block" [class.active]="bit === 1">
+            {{ bit }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mathematical Formula / Step-by-Step Explanation -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border-light); border-radius: 16px; padding: 25px; font-family: monospace; font-size: 1.05rem; text-align: center; box-shadow: var(--glass-shadow);">
+      <span style="color: var(--text-secondary); font-weight: bold; display: block; margin-bottom: 12px;">المعادلة الحسابية (Decimal Calculation)</span>
+      <span style="font-weight: bold; color: var(--primary-indigo); font-size: 1.2rem; line-height: 1.6; display: inline-block;" dir="ltr">
+        (<span *ngFor="let bit of bits; let i = index">
+          <span [style.color]="bit === 1 ? 'var(--primary-indigo)' : '#94a3b8'">{{ bit }} &times; {{ bitWeights[i] }}</span>
+          <span *ngIf="i < 7" style="color: #cbd5e1;"> + </span>
+        </span>) = {{ decimalValue || 0 }}
+      </span>
+    </div>
+
+  </div>
+
+  <!-- Tab Content: Logic Gates Simulator -->
+  <div *ngIf="activeTab === 'gates'" style="animation: fadeIn 0.5s ease;">
+    <div class="modern-card" style="padding: 30px; margin-bottom: 40px; text-align: center;">
+      <h2 style="color: var(--accent-orange); margin-bottom: 10px;">{{ 'TOOLS.GATES_TITLE' | translate }}</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 25px;">{{ 'TOOLS.GATES_DESC' | translate }}</p>
+      
+      <!-- Gate Selection Pills -->
+      <div class="gate-selectors">
+        <button *ngFor="let gate of ['AND', 'OR', 'NOT', 'XOR', 'NAND', 'NOR']" 
+                (click)="selectGate(gate)" 
+                [class.active]="selectedGate === gate" 
+                class="gate-btn">
+          {{ gate }}
+        </button>
+      </div>
+
+      <!-- Explanatory Subtitle -->
+      <div style="background: var(--bg-card); border-radius: 12px; padding: 15px; max-width: 600px; margin: 0 auto 30px; border-left: 4px solid var(--accent-orange);">
+        <strong style="color: var(--text-main);">{{ selectedGate }}:</strong> 
+        <span style="color: var(--text-secondary); margin-left: 5px;">{{ 'TOOLS.GATES_EXPLAIN_' + selectedGate | translate }}</span>
+      </div>
+
+      <!-- Simulator Board Area -->
+      <div class="gates-container">
+        
+        <!-- Interactive Canvas -->
+        <div class="sim-board" dir="ltr">
+          
+          <!-- Input Toggles -->
+          <div class="sim-inputs">
+            <!-- Switch A -->
+            <div class="sim-input-node">
+              <span class="switch-label">A</span>
+              <label class="toggle-control">
+                <input type="checkbox" [checked]="gateInputA" (change)="toggleInputA()">
+                <span class="slider-round"></span>
+              </label>
+              <span class="switch-val" [class.active]="gateInputA">{{ gateInputA ? 1 : 0 }}</span>
+            </div>
+
+            <!-- Switch B (Hidden for NOT gate) -->
+            <div class="sim-input-node" [style.visibility]="selectedGate === 'NOT' ? 'hidden' : 'visible'">
+              <span class="switch-label">B</span>
+              <label class="toggle-control">
+                <input type="checkbox" [checked]="gateInputB" (change)="toggleInputB()">
+                <span class="slider-round"></span>
+              </label>
+              <span class="switch-val" [class.active]="gateInputB">{{ gateInputB ? 1 : 0 }}</span>
+            </div>
+          </div>
+
+          <!-- Schematic SVG Center -->
+          <div class="sim-gate-center">
+            <svg viewBox="0 0 600 200" style="width: 100%; height: 100%; max-width: 600px;" class="schematic-svg">
+              <!-- Wires for 2-Input Gates -->
+              <g *ngIf="selectedGate !== 'NOT'">
+                <!-- Wire A -->
+                <path d="M 50,60 L 180,60 L 180,75 L 220,75" 
+                      fill="none" stroke-width="4"
+                      [ngClass]="{'active-wire': gateInputA, 'inactive-wire': !gateInputA}" />
+                <!-- Wire B -->
+                <path d="M 50,140 L 180,140 L 180,125 L 220,125" 
+                      fill="none" stroke-width="4"
+                      [ngClass]="{'active-wire': gateInputB, 'inactive-wire': !gateInputB}" />
+              </g>
+
+              <!-- Wires for NOT Gate -->
+              <g *ngIf="selectedGate === 'NOT'">
+                <!-- Wire A (NOT) -->
+                <path d="M 50,100 L 220,100" 
+                      fill="none" stroke-width="4"
+                      [ngClass]="{'active-wire': gateInputA, 'inactive-wire': !gateInputA}" />
+              </g>
+
+              <!-- Output Wire -->
+              <path [attr.d]="selectedGate === 'NOT' ? 'M 350,100 L 500,100' : (selectedGate === 'NAND' || selectedGate === 'NOR' ? 'M 360,100 L 500,100' : 'M 340,100 L 500,100')" 
+                    fill="none" stroke-width="4"
+                    [ngClass]="{'active-wire': gateOutput, 'inactive-wire': !gateOutput}" />
+
+              <!-- Gate Symbols -->
+              <!-- AND Gate -->
+              <g *ngIf="selectedGate === 'AND'" transform="translate(200, 50)" stroke-width="4" fill="none" stroke="var(--text-main)">
+                <path d="M 20,25 L 45,25 A 25 25 0 0 1 45,75 L 20,75 Z" fill="var(--bg-card)"/>
+              </g>
+
+              <!-- OR Gate -->
+              <g *ngIf="selectedGate === 'OR'" transform="translate(200, 50)" stroke-width="4" fill="none" stroke="var(--text-main)">
+                <path d="M 15,25 C 25,25 35,25 45,25 C 60,25 75,38 80,50 C 75,62 60,75 45,75 C 35,75 25,75 15,75 C 22,62 22,38 15,25 Z" fill="var(--bg-card)"/>
+              </g>
+
+              <!-- NOT Gate -->
+              <g *ngIf="selectedGate === 'NOT'" transform="translate(200, 50)" stroke-width="4" fill="none" stroke="var(--text-main)">
+                <polygon points="20,25 65,50 20,75" fill="var(--bg-card)"/>
+                <circle cx="75" cy="50" r="8" fill="var(--bg-card)"/>
+              </g>
+
+              <!-- NAND Gate -->
+              <g *ngIf="selectedGate === 'NAND'" transform="translate(200, 50)" stroke-width="4" fill="none" stroke="var(--text-main)">
+                <path d="M 20,25 L 45,25 A 25 25 0 0 1 45,75 L 20,75 Z" fill="var(--bg-card)"/>
+                <circle cx="78" cy="50" r="8" fill="var(--bg-card)"/>
+              </g>
+
+              <!-- NOR Gate -->
+              <g *ngIf="selectedGate === 'NOR'" transform="translate(200, 50)" stroke-width="4" fill="none" stroke="var(--text-main)">
+                <path d="M 15,25 C 25,25 35,25 45,25 C 60,25 75,38 80,50 C 75,62 60,75 45,75 C 35,75 25,75 15,75 C 22,62 22,38 15,25 Z" fill="var(--bg-card)"/>
+                <circle cx="88" cy="50" r="8" fill="var(--bg-card)"/>
+              </g>
+
+              <!-- XOR Gate -->
+              <g *ngIf="selectedGate === 'XOR'" transform="translate(200, 50)" stroke-width="4" fill="none" stroke="var(--text-main)">
+                <path d="M 7,25 C 14,38 14,62 7,75" fill="none"/>
+                <path d="M 15,25 C 25,25 35,25 45,25 C 60,25 75,38 80,50 C 75,62 60,75 45,75 C 35,75 25,75 15,75 C 22,62 22,38 15,25 Z" fill="var(--bg-card)"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Output Node (Bulb) -->
+          <div class="sim-output">
+            <div class="bulb-container" [class.active]="gateOutput">
+              <svg viewBox="0 0 64 64" class="bulb-svg" xmlns="http://www.w3.org/2000/svg">
+                <!-- Glow effect background -->
+                <circle cx="32" cy="24" r="16" class="bulb-glow-bg" />
+                
+                <!-- Wires/Rays (glowing yellow lines radiating outwards) -->
+                <g class="bulb-rays">
+                  <line x1="32" y1="4" x2="32" y2="8" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="32" y1="40" x2="32" y2="44" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="16" y1="20" x2="20" y2="20" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="44" y1="20" x2="48" y2="20" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="20.7" y1="8.7" x2="23.5" y2="11.5" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="43.3" y1="31.3" x2="40.5" y2="28.5" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="43.3" y1="8.7" x2="40.5" y2="11.5" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                  <line x1="20.7" y1="31.3" x2="23.5" y2="28.5" stroke="#eab308" stroke-width="2" stroke-linecap="round"/>
+                </g>
+
+                <!-- Metallic Base -->
+                <path d="M24,42 L40,42 L38,48 L26,48 Z" fill="#64748b" stroke="#475569" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M27,48 L37,48 L35,52 L29,52 Z" fill="#475569"/>
+                <circle cx="32" cy="53" r="2" fill="#334155"/>
+
+                <!-- Inner Filament -->
+                <path d="M28,32 L29,22 L31,24 L33,24 L35,22 L36,32" fill="none" class="bulb-filament" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Glass Dome -->
+                <path d="M22,34 C16,30 16,18 22,12 C28,6 36,6 42,12 C48,18 48,30 42,34 C39,37 38,39 38,42 L26,42 C26,39 25,37 22,34 Z" 
+                      fill="none" class="bulb-glass" stroke-width="2.5" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="switch-val" [class.active]="gateOutput">{{ gateOutput ? 1 : 0 }}</span>
+          </div>
+
+        </div>
+
+        <!-- Real-Time Truth Table -->
+        <div class="table-card">
+          <h3 style="color: var(--text-main); margin-top: 0; margin-bottom: 15px;">جدول الحقيقة (Truth Table)</h3>
+          
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>A</th>
+                <th *ngIf="selectedGate !== 'NOT'">B</th>
+                <th>Out</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of getTruthTableRows()" [class.active-row]="isRowActive(row)">
+                <td class="table-val">{{ row.a }}</td>
+                <td *ngIf="selectedGate !== 'NOT'" class="table-val">{{ row.b }}</td>
+                <td class="table-val">{{ row.out }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Tab Content: Compiler -->
+  <div *ngIf="activeTab === 'compiler'" class="modern-card" style="padding: 20px; text-align: right;">
+    <h2 style="color: var(--primary-indigo); margin-bottom: 15px;">{{ 'TOOLS.COMPILER_TITLE' | translate }}</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 20px;">{{ 'TOOLS.COMPILER_DESC' | translate }}</p>
+    
+    <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border-light); box-shadow: 0 10px 25px rgba(0,0,0,0.1); height: 600px;">
+      <iframe [src]="compilerUrl" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div>

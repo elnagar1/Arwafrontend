@@ -1,0 +1,39 @@
+<div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px; min-height: 80vh;" dir="auto">
+  
+  <div style="text-align: center; margin-bottom: 50px;">
+    <h1 style="color: var(--primary-indigo); font-size: 2.5rem; margin-bottom: 10px;">{{ 'GLOSSARY.TITLE' | translate }}</h1>
+    <p style="color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+      {{ 'GLOSSARY.SUBTITLE' | translate }}
+    </p>
+  </div>
+
+  <!-- Search Bar -->
+  <div style="max-width: 600px; margin: 0 auto 40px;">
+    <div style="position: relative;">
+      <input type="text" [(ngModel)]="searchQuery" (ngModelChange)="filterTerms()" [placeholder]="'GLOSSARY.SEARCH_PLACEHOLDER' | translate" 
+             style="width: 100%; padding: 15px 20px 15px 50px; font-size: 1.1rem; font-family: var(--font-sans); border: 2px solid var(--border-light); border-radius: 50px; outline: none; transition: border-color 0.3s; box-shadow: var(--glass-shadow); background: rgba(255,255,255,0.05); color: var(--text-main);">
+      <span style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 1.2rem;">🔍</span>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="filteredGroups.length === 0" style="text-align: center; padding: 50px; color: var(--text-secondary);">
+    <span style="font-size: 3rem; display: block; margin-bottom: 15px;">😕</span>
+    <h3>{{ 'GLOSSARY.NO_RESULTS' | translate }}</h3>
+  </div>
+
+  <!-- Glossary Groups -->
+  <div *ngFor="let group of filteredGroups" style="margin-bottom: 40px;">
+    <h2 style="color: var(--primary-blue); font-size: 1.5rem; margin-bottom: 20px; border-bottom: 2px solid var(--border-light); padding-bottom: 10px;">
+      {{ 'GLOSSARY.LESSON' | translate }} {{ group.chapter }}
+    </h2>
+    
+    <div class="glossary-grid">
+      <div *ngFor="let term of group.terms" class="modern-card glossary-card">
+        <h3 class="term-title">{{ term.term }}</h3>
+        <p class="term-def">{{ term.definition }}</p>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,34 @@
+<nav class="main-nav">
+  <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <!-- Modern Logo -->
+      <div style="width: 45px; height: 45px; border-radius: 12px; overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);">
+        <img src="/assets/shafra_logo.jpg" alt="Shafra Tech Logo" style="width: 100%; height: 100%; object-fit: cover;">
+      </div>
+      <span style="font-size: 1.4rem; font-weight: 800; color: var(--text-main); font-family: var(--font-sans); letter-spacing: -0.5px;">شفرة تك (Shafra Tech)</span>
+    </div>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+      ☰
+    </button>
+  </div>
+
+  <!-- Desktop & Mobile Links Container -->
+  <div class="nav-links" [class.show-mobile-menu]="isMobileMenuOpen">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="isMobileMenuOpen = false">{{ 'NAVBAR.HOME' | translate }}</a>
+    <a routerLink="/courses" routerLinkActive="active" (click)="isMobileMenuOpen = false">{{ 'NAVBAR.CURRICULUM' | translate }}</a>
+    <a [routerLink]="['/']" fragment="about-instructor" (click)="isMobileMenuOpen = false" style="cursor: pointer;">من نحن</a>
+    <a routerLink="/textbook" routerLinkActive="active" (click)="isMobileMenuOpen = false">{{ 'NAVBAR.TEXTBOOK' | translate }}</a>
+    <a routerLink="/glossary" routerLinkActive="active" (click)="isMobileMenuOpen = false">{{ 'NAVBAR.GLOSSARY' | translate }}</a>
+    <a routerLink="/tools" routerLinkActive="active" (click)="isMobileMenuOpen = false">{{ 'NAVBAR.TOOLS' | translate }}</a>
+    <a [href]="'https://wa.me/2' + whatsapp_number" target="_blank" class="edu-button book-btn" (click)="isMobileMenuOpen = false">{{ 'NAVBAR.BOOK_SESSION' | translate }}</a>
+    <button (click)="switchLanguage()" class="edu-button-outline lang-btn" style="padding: 0.3rem 0.6rem; font-size: 0.85rem; min-width: auto;">
+      {{ 'NAVBAR.LANG_TOGGLE' | translate }} 🌐
+    </button>
+  </div>
+</nav>
+
+<main style="max-width: 1300px; margin: 0 auto; padding: 40px 20px;">
+  <router-outlet></router-outlet>
+</main>

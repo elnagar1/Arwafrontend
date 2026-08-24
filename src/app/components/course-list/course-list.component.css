@@ -1,0 +1,78 @@
+.course-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+
+.sidebar {
+  flex: 1;
+  min-width: 300px;
+  max-width: 350px;
+  padding: 20px;
+  height: fit-content;
+}
+
+.main-player {
+  flex: 3;
+  min-width: 300px;
+  padding: 20px;
+}
+
+.lesson-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.lesson-item:hover {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.lesson-item.active {
+  background: rgba(37, 99, 235, 0.2);
+  border-right: 4px solid var(--primary-blue);
+}
+
+.lesson-icon {
+  width: 30px;
+  text-align: center;
+}
+
+.lesson-details h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.lesson-details .duration {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .course-container {
+    flex-direction: column-reverse;
+  }
+  
+  .sidebar {
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .main-player {
+    min-width: 100%;
+  }
+
+  /* Make buttons full width on very small screens */
+  .edu-button, .edu-button-outline {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  /* Edu-Tech Theme Variables */
+  --bg-main: #0a0f1c;
+  --bg-card: rgba(23, 32, 51, 0.6);
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --primary-blue: #3b82f6;
+  --primary-indigo: #6366f1;
+  --accent-orange: #f97316;
+  --accent-yellow: #facc15;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+  --glass-shadow-hover: 0 30px 60px -15px rgba(99, 102, 241, 0.3);
+  
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Subtle dotted grid for a notebook/tech feel */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(249, 115, 22, 0.1), transparent 50%);
+  background-size: 30px 30px, 100% 100%, 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-main);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--primary-blue);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+a:hover {
+  color: var(--primary-indigo);
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+/* Modern Card Utility */
+.modern-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.modern-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--glass-shadow-hover);
+  border-color: rgba(79, 70, 229, 0.3);
+}
+
+/* Edu-Button Utility */
+.edu-button {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-indigo));
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edu-button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 25px -5px rgba(79, 70, 229, 0.5);
+  color: white;
+}
+
+.edu-button-outline {
+  background: rgba(99, 102, 241, 0.05);
+  color: var(--text-main);
+  border: 2px solid var(--primary-indigo);
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.edu-button-outline:hover {
+  background: rgba(79, 70, 229, 0.05);
+  transform: translateY(-3px);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-main); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary); 
+}
+
+/* --- Continuous Animations --- */
+
+/* 1. Floating Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* 2. Blob Spin */
+@keyframes blob-spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  33% { transform: translate(-50%, -50%) rotate(120deg) scale(1.1); }
+  66% { transform: translate(-50%, -50%) rotate(240deg) scale(0.9); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+}
+.animate-blob-spin {
+  animation: blob-spin 15s linear infinite;
+}
+
+/* 3. Pulse Glow */
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* 4. Gradient Shift */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 5s ease infinite;
+}
